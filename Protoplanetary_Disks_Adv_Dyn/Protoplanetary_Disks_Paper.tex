@@ -1,0 +1,184 @@
+\documentclass[aps,pra,twocolumn]{revtex4-1}
+
+\usepackage{graphicx,epstopdf}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+
+
+\begin{document}
+
+
+\title{On the gravitational stability of rotating disks with respect to the formation of planets}
+
+\author{Evan Anders}
+\affiliation{Department of Physics, Whitworth University, 300 W. Hawthorne Rd., Spokane, WA 99251}
+
+
+\date{\today}
+
+\begin{abstract}
+A brief overview of the physics behind disks.
+\end{abstract}
+
+
+
+\maketitle
+
+
+\section{\label{section1} Introduction}
+
+Protoplanetary disks are an observed phenomena which surround young stars and display early conditions of planet formation.  These disks typically have masses far lower than the stellar mass and are distinctly different from debris disks which surround older stars.  These disks persist with lifetimes on the order of $10^6$ years.  As a result, it is exceptionally rare for observations of the evolution of these disks to be made.  Rather, their evolution must be described using statistical studies of populations and computational simulations.  Angular momentum conservation is at the heart of this slow evolution.   \cite{armitage2011}
+
+While lacking in predictive power for understanding how protoplanetary disks will develop, generic models for such disks were created long ago.  These imperfect models do provide some insight into the nature of protoplanetary disk evolution, specifically with regards to gravitational stability, or a lack thereof.  This paper will focus on the effect of gravity in protoplanetary disks.
+
+
+
+\section{\label{section 2} A Schema for the Description of Disk Evolution}
+
+Protoplanetary disks are modeled as geometrically thin cylinders in cylindrical polar coordinates $(r, \phi, h)$.  The thin nature of the disks allows us to assume that $h_{\text{max}} \ll r_{\text{max}}$.  Additionally, the fluid nature of the disk (which is made up of gas and dust) along with its thin nature allows us to assume that the mass of the disk is significantly smaller than that of the star, or $M_{\text{disk}} \ll M_{*}$.  The result of such assumptions allows us to model each particle with mass $m_p$ at some radius $r$ within the disk as being influenced by a point mass,  at the location of the star \cite{armitage2011}.  As such, we obtain the equation of motion \cite{taylor2005},
+\begin{equation}
+m_p \vec{a}_r = m_p ( \ddot{r} - r\dot{\phi}^2 )\hat{r} = - \frac{G M_* m_p}{r^2}\hat{r} . \nonumber
+\end{equation}
+Assuming that the disk is not collapsing in upon itself or rapidly expanding outward, we can model it as a thin accretion disk, assuming that $\ddot{r} = 0$.  Solving for $\dot{\phi}$, we find \cite{armitage2011}
+\begin{equation}
+\dot{\phi} = \Omega_D = \sqrt{\frac{G M_*}{r^3}}.
+\end{equation}
+As a result, the angular momenta of the particles of the disk are found to be \cite{taylor2005},
+\begin{equation}
+\ell = \left| \vec{r} \times \vec{p} \right| = m_p r^2 \Omega_D = m_p \sqrt{G M_* r},
+\end{equation}
+which clearly increases as $\sqrt{r}$.  In order for disk accretion to occur, angular momentum must be lost among the gas.  There are two possibilities for this loss of angular momentum: (1) the momentum is redistributed within the disk or (2) the momentum is lost to an external sink \cite{armitage2011}.  This paper is primarily concerned with the former.
+
+
+\subsection{\label{section2.1} A Model of Evolution in Accretion Disks }
+Among thin disks as described in the previous section, the vertical structure of the disk is insignificant.  As a result, we can integrate over this thickness in order to obtain a surface density, $\mu(r, t)$  \cite{armitage2011}.  Additionally, if we assume that the disk is an accretion disk, we know that it contains both the primary circular velocity,
+\begin{equation}
+u_\phi = r\Omega_D(r)
+\end{equation}
+as well as some radial `drift' velocity $u_r$.  This `drift' velocity is negative close to the star and is dependent both upon $r$ and $t$, and is characterized by the surface density $\mu$.  In order to understand the evolution behavior of the disc, we must examine an infinitesimally thin portion of the disk between some radius, $R$ and $R + dr$.  This ring has a total mass of $\pi \left(2 R dR + dR^2 \right)\mu \approx 2 \pi R dR \mu$ and, therefore, a total angular velocity of $2\pi R^3 dR \mu \Omega_D$ \cite{king2002}.
+
+\subsubsection{\label{section 2.1.1} Conservation of Mass}
+We know that the rate of change of both of these quantities is due to the flow from surrounding infinitely thin rings.  Thus,
+\begin{multline}
+\frac{\partial}{\partial t}\left(  2\pi R dR \mu \right) = M_{\text{in}}(R) + M_{\text{in}}(R + dR) \\
+= 2\pi \left[ R u_r(R, t) \mu(R, t) - (R + dR) u_r(R+dR, t) \mu(R+dR, t)\right] \\
+\approx -2\pi dR \frac{\partial}{\partial r}(R\mu u_r)
+\nonumber
+\end{multline}
+This then provides for us the mass conservation equation in the limit $dR \rightarrow 0$,
+\begin{equation}
+\frac{\partial}{\partial t}\left(  2\pi R dR \mu \right) + 2\pi dR \frac{\partial}{\partial r}(R\mu u_r) = 0 \nonumber
+\end{equation}
+or, more succinctly \cite{king2002},
+\begin{equation}
+R \frac{\partial \mu}{\partial t} + \frac{\partial}{\partial r}(R \mu u_r) = 0. \label{consMass}
+\end{equation}
+
+\subsubsection{\label{section 2.1.2} Conservation of Angular Momentum}
+Conservation of angular momentum is approached in a similar manner. In addition to accounting for the flow of mass in an out of our thin ring, we must also account for additional viscous torques, $\Gamma(r, t)$, and we find that
+\begin{equation}
+\frac{\partial}{\partial t}\left(  2\pi R^3 dR \mu \Omega_D \right) \approx  -2\pi dR \frac{\partial}{\partial r}(R^3 \mu u_r \Omega_D) + \frac{\partial \Gamma}{\partial r}dR.
+\nonumber
+\end{equation}
+By isolating common terms and taking the limit as $dR \rightarrow 0$, we find our equation for conservation of angular momentum \cite{king2002},
+\begin{equation}
+R \frac{\partial}{\partial t} (\mu R^2 \Omega_D) + \frac{\partial}{\partial r} (R \mu u_r R^2 \Omega_D ) = \frac{1}{2\pi} \frac{\partial \Gamma}{\partial R}. \label{consAng}
+\end{equation}
+
+\subsubsection{\label{section 2.1.3} Governing Equation for surface density time evolution}
+Using our equation for conservation of mass and assuming that $\frac{\partial{\Omega_D}}{\partial t} = 0$, we can simplify our expression of conservation of angular momentum such that
+\begin{equation}
+R\mu u_r \frac{\partial}{\partial r} (R^2 \Omega_D) = \frac{1}{2\pi} \frac{\partial \Gamma}{\partial r}.
+\end{equation}
+Combining this equation with our equation for conservation of mass, we can eliminate $u_r$, such that
+\begin{equation}
+R \frac{\partial \mu}{\partial t} = -\frac{\partial}{\partial r}(R \mu u_r) = - \frac{\partial}{\partial r}\left[ \frac{1}{2\pi \frac{\partial}{\partial r}(R^2 \Omega_D)}\frac{\partial \Gamma}{\partial r} \right].
+\end{equation}
+Acknowledging that the viscous torque applied at our radius follow the form \cite{king2002},
+\begin{equation}
+\Gamma(R, t) = 2\pi  u \mu R^3 \frac{\partial \Omega_D}{\partial r} \label{torque}
+\end{equation}
+we can solve for our equation of motion, which follows the form 
+\begin{equation}
+\frac{\partial \mu}{\partial t} = \frac{3}{r} \frac{\partial}{\partial r} \left| r^{1/2}\frac{\partial}{\partial r}\left( u \mu r^{1/2} \right) \right|
+\end{equation}
+as long as external torques and mass losses are neglected\cite{king2002, armitage2011}.  This follows directly from conservation of mass and angular momentum for a viscous fluid with kinematic viscosity $u$.
+
+
+\subsection{\label{section 2.2} Characteristics of Steady-state Thin Disks}
+For a disk system in which external conditions change at timescales much longer than the radial structure of a thin disk, we can set time derivatives from our previous conservation equations, Eqs. (\ref{consMass}) and (\ref{consAng}) equal to zero.  Conservation of mass yields
+\begin{equation}
+R\mu u_r = constant, \nonumber
+\end{equation}
+from which it is easy to see that the total change of mass of the disk (the accretion rate) is equal to 
+\begin{equation}
+\dot{M} = -2\pi R \mu u_r, \label{modifiedMass1}
+\end{equation}
+where the negative sign arises due to the fact that $u_r$ is in the inward radial direction.  Conservation of angular momentum yields
+\begin{equation}
+R^3 \mu u_r \Omega_D = \frac{\Gamma}{2\pi} + \frac{C}{2\pi} \nonumber
+\end{equation}
+for some constant $C$.  Plugging in our torque from Eq. (\ref{torque}) and rearranging two terms, we find that \cite{king2002}
+\begin{equation}
+- u \mu \frac{\partial \Omega_D}{\partial r} = -\mu u_r \Omega_D  + \frac{C}{2\pi R^3 }. \label{modifiedAng1}
+\end{equation}
+
+\subsubsection{\label{section 2.2.1} Angular velocity near the star}
+Typical stars rotate more slowly than the protoplanetary disk's rotation calls for at the star's equator.  Thus,
+\begin{equation}
+\Omega_* < \Omega_D(R_*).
+\end{equation}
+Now imagine that the dust of the protoplanetary disk extends radially inward to a far enough extent such that it is continuous up to the surface of the sun.  This difference in angular velocity between the dust and the sun requires that angular momentum is lost when that dust falls into the star (as $u_r$ is radially inward).  As such, there is a boundary layer of thickness $d$ in which the disk's material falls from the angular velocity of $\Omega_D$ to $\Omega_*$.  
+
+Typically, $b \ll R_*$ and, therefore, $\Omega$ is extremely close to its typical Keplerian value where $\frac{\partial \Omega}{\partial r} = 0$.  At this point,
+\begin{equation}
+\Omega(R_* + d) = \left(\frac{GM_*}{{R_*}^3} \right)^{1/2} \left[1 + X(b/R_*) \right],
+\end{equation}
+where $X[b/R_*]$ is some small fraction.  In this regime, we must evaluate Eq. (\ref{modifiedAng1}), which takes on the form
+\begin{equation}
+C = 2\pi R_*^3 \mu u_r \Omega(R_* + d) , \nonumber
+\end{equation}
+around the point $R_* + d$, which determines our constant, $C$, to be
+\begin{equation}
+C = - \dot{M}(G M R_*)^{1/2}. \nonumber
+\end{equation}
+Substituting this constant, determined by our boundary condition, into Eq. (\ref{modifiedAng1}), we find that
+\begin{equation}
+u \mu = \frac{\dot{M}}{3\pi}\left[ 1 - \sqrt{\frac{R_*}{R}} \right]
+\end{equation}
+
+\section{\label{section 3} Gravitational Instability}
+Imagine a large, flat disc of radius R made up of constituent gases and particles with a large mass at its center, $M$, and some overall mass density $\mu_{\text{mean}}$ rotating roughly with a constant angular velocity, $\Omega$. Suppose that for this disc, the centripetal acceleration at any point $\vec{r}$ is roughly equal to 
+\begin{equation}
+\vec{a}_{\text{cp}} = \left( \vec{\Omega} \times \vec{r} \right) \times \vec{\Omega} ,
+\end{equation}
+and suppose that this balances the force of gravitation,
+\begin{equation}
+\vec{a}_{\text{grav}} = -\frac{G M}{r^2}\hat{r},
+\end{equation}
+where $G$ is the universal gravitational constant and $M$ is roughly the mass at the center of the galaxy.
+
+Now suppose that a small square area of $L^2$ experiences a contraction such that the mass density changes by a factor $\epsilon$, such that $\mu_{\text{local}} = (1+\epsilon) \mu_{\text{mean}}$. Particles around such a region would experience a local change in gravitation \cite{toomre1964},
+\begin{multline}
+\Delta a_{\text{grav}} = a_{\text{new}} - a_{\text{old}} \\
+= \frac{G \mu_{local}(\epsilon L)^2}{(1-\epsilon)^2 L^2} - \frac{G\mu_{\text{mean}} L^2}{L^2}
+\approx G \mu_{\text{mean}}\epsilon
+\end{multline}
+
+\section{Things to do}
+
+\begin{itemize}
+  \item Derive blackbody radiation temperature
+  \item Derive simple scaling relationship between $u$ and $\alpha$
+  \item Show that determining surface density profile allows us to recover $u$ for steady-state disks.
+  \item Talk about $\alpha$.  How it's never constant.  What it tells us.  Show how simple $\alpha$ models and gravitational instability/Toomre Q parameter are linked
+  \item Derive expressions for gravitational instability and the Toomre Q parameter
+  \item What does this parameter mean.  What are the three solutions to the numerical simulations?
+  \item How can gravitational stability affect planetary formation?
+\end{itemize}
+
+
+
+\bibliography{Bibliography}
+
+\end{document}
