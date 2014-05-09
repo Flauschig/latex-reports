@@ -54,22 +54,45 @@ For such a system, our equations of motion become \cite{taylor2005}
 \begin{equation}
 m \vec{\dot{v}} = m \vec{g} - c v \vec{v}
 \end{equation}
-Which, when examined in a 2-dimensional plane, becomes,
+Which, when examined in a 2-dimensional plane, becomes
 \begin{equation}
-m \dot{v}_x  = -c\sqrt{v_x^2 + v_y^2}v_x
+m \dot{v}_x  = -c\sqrt{v_x^2 + v_y^2}v_x \label{xafter}
 \end{equation}
-
+and
 \begin{equation}
-m \dot{v}_y  = -c\sqrt{v_x^2 + v_y^2}v_y - mg
+m \dot{v}_y  = -c\sqrt{v_x^2 + v_y^2}v_y - mg. \label{yafter}
 \end{equation}
+While this system of equations is accurate for a rocket in motion \emph{after} its motor finishes providing thrust.  Before this time, the rocket motor provides an additional force in the direction of motion, such that
+\begin{equation}
+\vec{f}_\text{burn} = f_\text{burn} \hat{v}.
+\end{equation}
+Additionally, during this time, the mass of the rocket-motor system is decreasing.  As such, our equations of motion during the thrust of the rocket are
+\begin{equation}
+m(t) \dot{v}_x  = -c\sqrt{v_x^2 + v_y^2}v_x + f_\text{burn} \frac{v_x}{\sqrt{v_x^2 + v_y^2}} \label{xbefore}
+\end{equation}
+and
+\begin{equation}
+m(t) \dot{v}_y  = -c\sqrt{v_x^2 + v_y^2}v_y - m(t)g + f_\text{burn} \frac{v_y}{\sqrt{v_x^2 + v_y^2}}, \label{ybefore}
+\end{equation}
+whereas  the equations of motion after the thrust are, as we saw above, Eqs. (\ref{xafter}) and (\ref{yafter}), where $m = m_\text{rocket}$, which is the mass of the rocket and the spent motor.  In our equations of motion during the motor thrust, we define
+\begin{equation}
+m(t) = m_\text{rocket} + m_\text{fuel} \frac{t_\text{fuel} - t}{t_\text{fuel}}.
+\end{equation}
+With all of these pieces, we are capable of numerically solving for a value of $c$.
 
 
-\section{\label{section 3} Experimental Data}
+\section{\label{section 3} Calibration}
+We created an apparatus with a system of pulleys which held up a cylindrical fitting for a rocket motor.  This motor was designed to fire upward such that force was directed downward, and wires connecting to the fitting also connected to a dual-range force sensor after encountering a system of pulleys.  In order to calibrate our apparatus, we loaded a mass hanger onto the system, zeroed our force sensor, and added weight to the hanger at increments of 0.5 kg.  A plot of force measured in the force sensor vs. force measured in the hanger can be see in Fig. \ref{calibrationPlot}.  Our best fit line for these data points shows that,
+\begin{equation}
+F_\text{measured} = \chi F_\text{applied} + \beta ,
+\end{equation}
+where beta is a small offset that results from the fact that our testing apparatus did not truly have a mass of zero or a measured force of exactly zero.
+
+Using these results, we measured the force produced by a g38 motor, and applied the scaling factor, $F_\text{applied} = F_\text{measured}/\chi$ in order to find how much force, $F_\text{applied}$, the rocket motor provided.  The scaled data of the rocket motor thrust can be see in Fig. \ref{thrustPlot}. 
 
 
 
-
-\section{\label{section 4} Analysis and Determination of $c$}
+\section{\label{section 4} Experimental Data and Analysis}
 
 
 
