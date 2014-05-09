@@ -3,6 +3,7 @@
 \usepackage{graphicx,epstopdf}
 \usepackage{amsmath}
 \usepackage{mathrsfs}
+\usepackage{mathtools}
 
 
 \begin{document}
@@ -11,6 +12,9 @@
 \title{Determining the drag coefficient of the mirage rocket}
 
 \author{Evan Anders}
+\author{Andrew French}
+\author{John Hoff}
+\author{Michael Woodkey}
 \affiliation{Department of Physics, Whitworth University, 300 W. Hawthorne Rd., Spokane, WA 99251}
 
 
@@ -26,13 +30,38 @@ Abstract goes here
 
 
 \section{\label{section1} Introduction}
+In introductory physics we learned to roughly model projectile motion using gravitational forces and initial velocities.  In advanced dynamics, our understanding of the motion of objects moving through fluids has become more intricate.  We learned about linear and quadratic drag forces, the former of which arises from the viscosity of the liquid and the latter of which arises from the necessity of the projectile to push the medium out of its path.
 
+While learning about these topics in a classroom setting is beneficial to our knowledge, it is our goal here to prove that this more accurate model applies to real data.  We were given a rocket, the Mirage, and tasked with finding the drag coefficient of that rocket.  Here we show, through calibration of motor impulse and analysis of actual flight data, the derivation of our rocket's drag coefficient.
 
 
 
 \section{\label{section 2} Theory}
+It is a good approximation to assume that drag force acts in a direction opposite to that of velocity, that is,
+\begin{equation}
+\vec{f}_\text{drag} = - f(v) \hat{v}.
+\end{equation}
+At low speeds, it is a good approximation to assume that
+\begin{equation}
+f(v) = b v + c v^2 = f_\text{linear} + f_\text{quadratic},
+\end{equation}
+where $f_\text{linear}$ arises as a result of the viscous properties of the medium through which the projectile moves and $f_\text{quadratic}$ arises from the projectile accelerating the fluid medium out of its path \cite{taylor2005}.  At high speeds, the quadratic term becomes significantly more important than the linear term, such as in the case of a rocket being rapidly propelled by a motor.  For a long, cylindrical object with a velocity aligned with the area vector of the top cylinder, we can approximate the value of the quadratic drag coefficient, such that
+\begin{equation}
+c = \nu A = \nu \pi r^2.
+\end{equation}
 
+For such a system, our equations of motion become \cite{taylor2005}
+\begin{equation}
+m \vec{\dot{v}} = m \vec{g} - c v \vec{v}
+\end{equation}
+Which, when examined in a 2-dimensional plane, becomes,
+\begin{equation}
+m \dot{v}_x  = -c\sqrt{v_x^2 + v_y^2}v_x
+\end{equation}
 
+\begin{equation}
+m \dot{v}_y  = -c\sqrt{v_x^2 + v_y^2}v_y - mg
+\end{equation}
 
 
 \section{\label{section 3} Experimental Data}
