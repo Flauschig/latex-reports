@@ -96,13 +96,13 @@ R \frac{\partial \mu}{\partial t} = -\frac{\partial}{\partial r}(R \mu u_r) = - 
 \end{equation}
 Acknowledging that the viscous torque applied at our radius follow the form \cite{king2002},
 \begin{equation}
-\Gamma(R, t) = 2\pi  u \mu R^3 \frac{\partial \Omega_D}{\partial r} \label{torque}
+\Gamma(R, t) = 2\pi  \nu \mu R^3 \frac{\partial \Omega_D}{\partial r} \label{torque}
 \end{equation}
 we can solve for our equation of motion, which follows the form 
 \begin{equation}
-\frac{\partial \mu}{\partial t} = \frac{3}{r} \frac{\partial}{\partial r} \left| r^{1/2}\frac{\partial}{\partial r}\left( u \mu r^{1/2} \right) \right|
+\frac{\partial \mu}{\partial t} = \frac{3}{r} \frac{\partial}{\partial r} \left| r^{1/2}\frac{\partial}{\partial r}\left( \nu \mu r^{1/2} \right) \right|
 \end{equation}
-as long as external torques and mass losses are neglected\cite{king2002, armitage2011}.  This follows directly from conservation of mass and angular momentum for a viscous fluid with kinematic viscosity $u$.
+as long as external torques and mass losses are neglected\cite{king2002, armitage2011}.  This follows directly from conservation of mass and angular momentum for a viscous fluid with kinematic viscosity $\nu$.
 
 
 \subsection{\label{section 2.2} Characteristics of Steady-state Thin Disks}
@@ -120,8 +120,10 @@ R^3 \mu u_r \Omega_D = \frac{\Gamma}{2\pi} + \frac{C}{2\pi} \nonumber
 \end{equation}
 for some constant $C$.  Plugging in our torque from Eq. (\ref{torque}) and rearranging two terms, we find that \cite{king2002}
 \begin{equation}
-- u \mu \frac{\partial \Omega_D}{\partial r} = -\mu u_r \Omega_D  + \frac{C}{2\pi R^3 }. \label{modifiedAng1}
+- \nu \mu \frac{\partial \Omega_D}{\partial r} = -\mu u_r \Omega_D  + \frac{C}{2\pi R^3 }. \label{modifiedAng1}
 \end{equation}
+
+
 
 \subsubsection{\label{section 2.2.1} Angular velocity near the star}
 Typical stars rotate more slowly than the protoplanetary disk's rotation calls for at the star's equator.  Thus,
@@ -144,26 +146,135 @@ C = - \dot{M}(G M R_*)^{1/2}. \nonumber
 \end{equation}
 Substituting this constant, determined by our boundary condition, into Eq. (\ref{modifiedAng1}), we find that
 \begin{equation}
-u \mu = \frac{\dot{M}}{3\pi}\left[ 1 - \sqrt{\frac{R_*}{R}} \right]
+\nu \mu = \frac{\dot{M}}{3\pi}\left[ 1 - \sqrt{\frac{R_*}{R}} \right]. \label{massFlow}
 \end{equation}
 
+Modeling our viscous dissipation per unit disc area as \cite{king2002}
+\begin{equation}
+D(r) = \frac{G \frac{\partial\Omega}{\partial r}}{4\pi r}= \frac{1}{2}\nu \mu (r\frac{\partial\Omega}{\partial r})^2,
+\end{equation}
+and substituting our findings in Eq. (\ref{massFlow}), we find that
+\begin{equation}
+D(r) =\frac{1}{2}\frac{\dot{M}}{3\pi}\left[ 1 - \sqrt{\frac{R_*}{r}} \right] (r\frac{\partial\Omega}{\partial r})^2. \nonumber
+\end{equation}
+Setting $\Omega = \Omega_D$ and using
+\begin{equation}
+r\frac{\partial\Omega_D}{\partial r} = -r\frac{3}{2}\sqrt{G M_*}r^{-5/2} = -\frac{3}{2}\sqrt{\frac{G M_*}{r^3}},
+\end{equation}
+we find that
+\begin{equation}
+D(r) = \frac{3GM_*\dot{M}}{8\pi r^3}\left[ 1 - \sqrt{\frac{R_*}{r}} \right].
+\end{equation}
+
+
+
+
+
 \section{\label{section 3} Gravitational Instability}
-Imagine a large, flat disc of radius R made up of constituent gases and particles with a large mass at its center, $M$, and some overall mass density $\mu_{\text{mean}}$ rotating roughly with a constant angular velocity, $\Omega$. Suppose that for this disc, the centripetal acceleration at any point $\vec{r}$ is roughly equal to 
+Imagine a large, flat disc of radius R made up of constituent gases and particles with a large mass at its center, $M_*$, and some overall mass density $\mu_{\text{mean}}$ rotating roughly with a constant angular velocity, $\Omega$. Suppose that for this disc, the centripetal acceleration at any point $\vec{r}$ is roughly equal to 
 \begin{equation}
 \vec{a}_{\text{cp}} = \left( \vec{\Omega} \times \vec{r} \right) \times \vec{\Omega} ,
 \end{equation}
 and suppose that this balances the force of gravitation,
 \begin{equation}
-\vec{a}_{\text{grav}} = -\frac{G M}{r^2}\hat{r},
+\vec{a}_{\text{g}} = -\frac{G M_*}{r^2}\hat{r}, 
 \end{equation}
 where $G$ is the universal gravitational constant and $M$ is roughly the mass at the center of the galaxy.
 
-Now suppose that a small square area of $L^2$ experiences a contraction such that the mass density changes by a factor $\epsilon$, such that $\mu_{\text{local}} = (1+\epsilon) \mu_{\text{mean}}$. Particles around such a region would experience a local change in gravitation \cite{toomre1964},
+\subsection{\label{section 3.1} The effects of disturbances on centripetal acceleration and gravitational acceleration}
+Now suppose that a small square area of $L^2$ experiences a contraction such that the mass density changes by a factor $\epsilon$, such that $\mu_{\text{disk}} = (1+\epsilon) \mu_{\text{disk}}$. This change also results in an equivalent contraction of the length dimension, such that $L_\text{local} = L/(1 + \epsilon)^{1/2}$. Particles at the border of such a region would experience a local change in gravitation,
 \begin{multline}
-\Delta a_{\text{grav}} = a_{\text{new}} - a_{\text{old}} \\
-= \frac{G \mu_{local}(\epsilon L)^2}{(1-\epsilon)^2 L^2} - \frac{G\mu_{\text{mean}} L^2}{L^2}
-\approx G \mu_{\text{mean}}\epsilon
+\Delta a_{\text{g}} =(a_{\text{g-local}} - a_{\text{g-mean}}) \\
+= \frac{G\mu_\text{disk} (1 + \epsilon) (L/(1 + \epsilon)^{1/2})^2}{L^2} - \frac{G\mu_{\text{disk}} L^2}{L^2}
+\\
+= G \mu_{\text{disk}}\left(\frac{1}{1 + \epsilon} - 1  \right) \nonumber
 \end{multline}
+Taking a Maclaurin series of $(1 + \epsilon)^{-1}$, we find that \cite{toomre1964}
+\begin{equation}
+\Delta F_\text{g} \approx G\mu_\text{disk}\epsilon
+\end{equation}
+
+Around such a region, there would also be a change in particles' local angular velocities.  That is, with respect to the center of the compressed region, the particles would experience a change in local angular velocity on the order of 
+\begin{equation}
+\Delta \Omega_\text{local}^2 = \left(\frac{u_\text{orb}}{L/(1+\epsilon)^{1/2}}\right)^2 - \left(\frac{u_\text{orb}}{L}\right)^2 =  \epsilon\Omega_\text{local}^2.
+\end{equation}
+As a result, any particle bordering this region in the outward radial direction would experience a change in local centripetal force of \cite{toomre1964}
+\begin{equation}
+\Delta (\Omega_\text{local}^2 L) = \epsilon \Omega_\text{local}^2 L
+\end{equation}
+
+If we balance out these two disturbances, such that
+\begin{equation}
+G \mu_\text{mean} \epsilon = \epsilon \Omega_\text{local}^2 L ,
+\end{equation}
+it is clear that the change in centripetal acceleration cannot overcome the former change in gravitational force below some critical length, $L_\text{crit}$, where
+\begin{equation}
+L_\text{crit} \approx \frac{G \mu_\text{disk}}{\Omega_\text{local}^2}. \label{crit1.1}
+\end{equation}
+In order to gain an appreciation for the order of magnitude of these disturbances must take, we recall that for a stable disk,
+\begin{equation}
+\Omega^2 R \approx \frac{G\mu_\text{disk} R^2}{R^2} = G\mu_\text{disk}.
+\end{equation}
+Substituting this result into Eq. (\ref{crit1.1}), we find that
+\begin{equation}
+L_\text{crit} \approx \left(\frac{\mu_\text{mean}}{\mu_\text{disk}}\right)\left(\frac{\Omega}{\Omega_\text{local}}\right)^2 R,
+\end{equation}
+informing us that disturbances required to cause such gravitational instability must be on the order of the radius of the disk itself \cite{toomre1964}.
+
+\subsection{\label{section 3.2} The effects on random motion on instability}
+For any disk in stable rotation, we know that
+\begin{equation}
+\Omega_\text{local}^2 R = \frac{u_t^2}{L} = G \mu_\text{disk}. \label{stableDiskBalance}
+\end{equation}
+One necessary criterion for stability is that two particles, traveling through a region such as that described in the previous section, must travel a distance roughly as large as the instability with respect to one another in a time during which the stability would have grown.  This time can be expressed in terms of the velocities of the particles, such that 
+\begin{equation}
+t_\text{motion} = \frac{L}{u_t}.
+\end{equation}
+Solving for $u_t$ in Eq. (\ref{stableDiskBalance}), we find that
+\begin{equation}
+t_\text{motion} = \sqrt{\frac{L}{G\mu_\text{disk}}}.
+\end{equation}
+
+We must now simplify our model for a moment, from a rotating disc to a sheet of particles each with some mean-square random velocity of $\langle u^2 \rangle$. Clearly in such a case, the time required to cross a disturbance of size $L$ is
+\begin{equation}
+t_\text{rand} = \frac{L}{\langle u^2 \rangle^{1/2}}.
+\end{equation}
+
+\subsection{\label{section 3.3} The Toomre $Q$ parameter}
+Combining our insights gained from a non-rotating disk with the time of evolution of an instability in a rotating disk, we find that the disk is stable only when the time required for non-random motions to pass through the region of instability is greater than the time of instability of random motions, such that
+\begin{equation}
+t_\text{motion} > t_\text{rand}.
+\end{equation}
+As a result, we find a second critical length depended upon average motion of particles, where average motions are only capable of keeping a region stable with a length below or roughly equal to
+\begin{equation}
+L_u \approx \frac{\langle u^2 \rangle}{G\mu_\text{disk}}. \label{crit2.1}
+\end{equation}
+
+Combining the results of Eqs. (\ref{crit1.1}) \& (\ref{crit2.1}), we know that the disk is stable only where $L_u > L_\text{crit}$, or where
+\begin{equation}
+\frac{\langle u^2 \rangle}{G\mu_\text{disk}} > \frac{G \mu_\text{disk}}{\Omega_\text{local}^2} \nonumber
+\end{equation}
+Rearranging, we find a parameter relating to gravitational stability, where \cite{whittle2010}
+\begin{equation}
+\frac{\langle u^2 \rangle^{1/2} \Omega_\text{local}}{G\mu_\text{disk}} > 1.
+\end{equation}
+At this point, it is important to recognize that our local angular rotation, which is often known as ``local vorticity'' is often expressed using one of Oort's constants \cite{whittle2010}, where
+\begin{equation}
+\Omega_{local} = \nabla \times \vec{u} = B = -\frac{1}{2}r\left(\frac{d\Omega}{dr} + \frac{2\Omega}{R}  \right)_{R_*}
+\end{equation}
+We can also express $B$ in terms of the epicyclic frequency of rotation of the disk, $\kappa$, where \cite{whittle2010}
+\begin{equation}
+\kappa^2 = -4B\Omega.
+\end{equation}
+As $\kappa/\Omega \approx 4/3$, we can approximate $B$, and therefore $\Omega_\text{local}$, as
+\begin{equation}
+B = \Omega_\text{local} = \frac{\kappa}{3}
+\end{equation}
+Renaming our random motion $\langle u^2 \rangle ^{1/2}$ as the stellar velocity dispersion, $\sigma$, our equation becomes
+\begin{equation}
+Q = \frac{\sigma \kappa}{3G\mu_\text{disk}} > 1,
+\end{equation}
+where $Q$ is called the ``Toomre Q parameter'' and specifies the necessary conditions for the gravitational stability of a disk.  From this parameter, it is clear to see that low velocity dispersion, low local rotation, low epicyclic frequencies and/or exceptionally high mass density favor gravitational instability \cite{whittle2010}.
 
 \section{Things to do}
 
@@ -172,7 +283,6 @@ Now suppose that a small square area of $L^2$ experiences a contraction such tha
   \item Derive simple scaling relationship between $u$ and $\alpha$
   \item Show that determining surface density profile allows us to recover $u$ for steady-state disks.
   \item Talk about $\alpha$.  How it's never constant.  What it tells us.  Show how simple $\alpha$ models and gravitational instability/Toomre Q parameter are linked
-  \item Derive expressions for gravitational instability and the Toomre Q parameter
   \item What does this parameter mean.  What are the three solutions to the numerical simulations?
   \item How can gravitational stability affect planetary formation?
 \end{itemize}
