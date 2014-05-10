@@ -80,21 +80,42 @@ m(t) = m_\text{rocket} + m_\text{fuel} \frac{t_\text{fuel} - t}{t_\text{fuel}}.
 \end{equation}
 With all of these pieces, we are capable of numerically solving for a value of $c$.
 
+\begin{equation}
+m(t) \dot{v}_x = 
+\begin{cases}
+-c\sqrt{v_x^2 + v_y^2}v_x + f_\text{burn} \frac{v_x}{\sqrt{v_x^2 + v_y^2}}, & \text{if } t < t_\text{burn} \\
+-c\sqrt{v_x^2 + v_y^2}v_x, & \text{if } t >= t_\text{burn}
+\end{cases}
+\end{equation}
+
 
 \section{\label{section 3} Calibration}
+\begin{figure} [t!]
+	\includegraphics[width=3in]{calibration_Plot.eps}
+	\caption{\label{calibrationPlot}}
+\end{figure}
+\begin{figure} [b!]
+	\includegraphics[width=3in]{G38-scaledTest.eps}
+	\caption{\label{thrustPlot}}
+\end{figure}
+
 We created an apparatus with a system of pulleys which held up a cylindrical fitting for a rocket motor.  This motor was designed to fire upward such that force was directed downward, and wires connecting to the fitting also connected to a dual-range force sensor after encountering a system of pulleys.  In order to calibrate our apparatus, we loaded a mass hanger onto the system, zeroed our force sensor, and added weight to the hanger at increments of 0.5 kg.  A plot of force measured in the force sensor vs. force measured in the hanger can be see in Fig. \ref{calibrationPlot}.  Our best fit line for these data points shows that,
 \begin{equation}
 F_\text{measured} = \chi F_\text{applied} + \beta ,
 \end{equation}
-where beta is a small offset that results from the fact that our testing apparatus did not truly have a mass of zero or a measured force of exactly zero.
+where $\chi = 0.0316$ and $\beta = 0.00794$, a small offset resulting from the fact that, even when zeroed, our testing apparatus did not read \emph{exactly} 0.
 
 Using these results, we measured the force produced by a g38 motor, and applied the scaling factor, $F_\text{applied} = F_\text{measured}/\chi$ in order to find how much force, $F_\text{applied}$, the rocket motor provided.  The scaled data of the rocket motor thrust can be see in Fig. \ref{thrustPlot}. 
 
 
 
 \section{\label{section 4} Experimental Data and Analysis}
+\begin{figure} [b!]
+	\includegraphics[width=3in]{Mirage-G38-BestFit.eps}
+	\caption{\label{experiment}}
+\end{figure}
 
-
+We used the system of equations defined by Eqs. (\ref{xbefore}, \ref{xafter}, \ref{ybefore}, \ref{yafter}).
 
 
 \section{\label{section 5} Conclusion}
