@@ -125,7 +125,7 @@ for some constant $C$.  Plugging in our torque from Eq. (\ref{torque}) and rearr
 
 
 
-\subsubsection{\label{section 2.2.1} Angular velocity near the star}
+\subsubsection{\label{section 2.2.1} Disk Mass Flow}
 Typical stars rotate more slowly than the protoplanetary disk's rotation calls for at the star's equator.  Thus,
 \begin{equation}
 \Omega_* < \Omega_D(R_*).
@@ -149,6 +149,8 @@ Substituting this constant, determined by our boundary condition, into Eq. (\ref
 \nu \mu = \frac{\dot{M}}{3\pi}\left[ 1 - \sqrt{\frac{R_*}{R}} \right]. \label{massFlow}
 \end{equation}
 
+
+\subsubsection{\label{section 2.2.2} Disk Effective Temperature}
 Modeling our viscous dissipation per unit disc area as \cite{king2002}
 \begin{equation}
 D(r) = \frac{G \frac{\partial\Omega}{\partial r}}{4\pi r}= \frac{1}{2}\nu \mu (r\frac{\partial\Omega}{\partial r})^2,
@@ -166,11 +168,35 @@ we find that
 D(r) = \frac{3GM_*\dot{M}}{8\pi r^3}\left[ 1 - \sqrt{\frac{R_*}{r}} \right].
 \end{equation}
 
+At this point it is important to note the important assumption that these accretion disks are optically thick in the $z$-direction.  According to this assumption, the disk radiates like a blackbody following the Stefan-Boltzmann law, which states that the energy flux of a body is proportional to the fourth power of absolute temperature, that is,
+\begin{equation}
+E_{\text{flux}} = \sigma T^4,
+\end{equation}
+where $\sigma$ is the Stefan-Boltzmann constant.  For our disk system, we know that $E_\text{flux} = D(r)$, and as such, the temperature of the disk can be expressed such that \cite{armitage2011, king2002}
+\begin{equation}
+T(r) = \left( \frac{3GM_*\dot{M}}{8\pi r^3 \sigma}\left[ 1 - \left( \frac{R_*}{r}\right)^{1/2}\right] \right)^{1/4}.
+\end{equation}
+
+
+\subsection{\label{section2.3} Disk viscosity models}
+While our current assumptions, namely that disk turbulence is local and that there are no external torques acting on the disk, have proven useful in finding the temperature profile of the disk, in order to say anything further it will be necessary to specify the disk's viscosity, $\nu$.  The classical approach at such a point is to assume that
+\begin{equation}
+\nu = \alpha \frac{c_s^2}{\Omega_D} = \alpha c_s h , \label{nuRelation}
+\end{equation}
+where $c_s$ is the speed of sound in the disk and the second equality follows from the assumption of vertical hydrostatic equilibrium (specifically, that $h \approx c_s/\Omega_D$.  In this equation, $\alpha$ is some dimensionless function which will remain constant if there is, in fact, a simple scaling relation between $\nu$ and locally defined flows.  While exceptionally simple, the assumption of a constant $\alpha$ allows us to construct a remarkably complete description of the evolution of a disk.  Unfortunately, it is unlikely that such models of constant $\alpha$ pertain to protoplanetary disks. Such a model could be applicable to a different sort of astrophysical disk phenomenon, but both the magnetic fields within protoplanetary disks and the changing temperature gradient make it unlikely that the viscosity near the star is equal to that of the viscosity very far from the star \cite{armitage2011}.
+
+At this point, it is important to note that, while constant $\alpha$ models may not be perfectly appropriate for describing protoplanetary disks, it is possible to determine a relationship for $\nu(r)$ if one has knowledge of $\mu$ and $\dot{M}$ within a disk, via Eq. (\ref{massFlow}).  While there are a number of methods of determining $\alpha$ or $\nu(r)$, they are beyond the scope of this paper.
+
+\subsubsection{\label{section 2.3.1} Simple-$\alpha$ models of protoplanetary disks}
+While not entirely correct, one of the simplest methods of constructing models of protoplanetary disks is by assuming that $\alpha$ in Eq. (\ref{nuRelation}) is constant.  In such a case, disk structure becomes a function of $\Omega_D$, $\mu$, and $\alpha$.  For planet formation, one significant prediction of such simple $\alpha$ models is that the steady-state surface density profile takes on the form $\mu \propto r^{-1}$.  Additionally, although not entirely accurate, simple $\alpha$ models give a useful starting point for making estimates on how other important disk quantities should vary with respect to disk radius.  
 
 
 
 
-\section{\label{section 3} Gravitational Instability}
+\section{\label{section 3} Angular momentum transport via Self-Gravity}
+It is a well-known fact that the self-gravity of massive disk which is subject to radiative cooling results in angular momentum transport and accretion \cite{armitage2011}.  In a disk for which magnetism is unimportant, the stability of the disk can be quantified as resulting from gravitational effects, the centripetal force, and pressure through a quantity known as the Toomre $Q$ parameter.
+
+\subsection{\label{section 3.1} Derivation of the Toomre $Q$ parameter}
 Imagine a large, flat disc of radius R made up of constituent gases and particles with a large mass at its center, $M_*$, and some overall mass density $\mu_{\text{mean}}$ rotating roughly with a constant angular velocity, $\Omega$. Suppose that for this disc, the centripetal acceleration at any point $\vec{r}$ is roughly equal to 
 \begin{equation}
 \vec{a}_{\text{cp}} = \left( \vec{\Omega} \times \vec{r} \right) \times \vec{\Omega} ,
@@ -181,7 +207,7 @@ and suppose that this balances the force of gravitation,
 \end{equation}
 where $G$ is the universal gravitational constant and $M$ is roughly the mass at the center of the galaxy.
 
-\subsection{\label{section 3.1} The effects of disturbances on centripetal acceleration and gravitational acceleration}
+\subsubsection{\label{section 3.1.1} The effects of disturbances on centripetal acceleration and gravitational acceleration}
 Now suppose that a small square area of $L^2$ experiences a contraction such that the mass density changes by a factor $\epsilon$, such that $\mu_{\text{disk}} = (1+\epsilon) \mu_{\text{disk}}$. This change also results in an equivalent contraction of the length dimension, such that $L_\text{local} = L/(1 + \epsilon)^{1/2}$. Particles at the border of such a region would experience a local change in gravitation,
 \begin{multline}
 \Delta a_{\text{g}} =(a_{\text{g-local}} - a_{\text{g-mean}}) \\
@@ -221,7 +247,7 @@ L_\text{crit} \approx \left(\frac{\mu_\text{mean}}{\mu_\text{disk}}\right)\left(
 \end{equation}
 informing us that disturbances required to cause such gravitational instability must be on the order of the radius of the disk itself \cite{toomre1964}.
 
-\subsection{\label{section 3.2} The effects on random motion on instability}
+\subsubsection{\label{section 3.1.2} The effects on random motion on instability}
 For any disk in stable rotation, we know that
 \begin{equation}
 \Omega_\text{local}^2 R = \frac{u_t^2}{L} = G \mu_\text{disk}. \label{stableDiskBalance}
@@ -240,7 +266,7 @@ We must now simplify our model for a moment, from a rotating disc to a sheet of 
 t_\text{rand} = \frac{L}{\langle u^2 \rangle^{1/2}}.
 \end{equation}
 
-\subsection{\label{section 3.3} The Toomre $Q$ parameter}
+\subsubsection{\label{section 3.1.3} The Toomre $Q$ parameter}
 Combining our insights gained from a non-rotating disk with the time of evolution of an instability in a rotating disk, we find that the disk is stable only when the time required for non-random motions to pass through the region of instability is greater than the time of instability of random motions, such that
 \begin{equation}
 t_\text{motion} > t_\text{rand}.
@@ -276,17 +302,11 @@ Q = \frac{\sigma \kappa}{3G\mu_\text{disk}} > 1,
 \end{equation}
 where $Q$ is called the ``Toomre Q parameter'' and specifies the necessary conditions for the gravitational stability of a disk.  From this parameter, it is clear to see that low velocity dispersion, low local rotation, low epicyclic frequencies and/or exceptionally high mass density favor gravitational instability \cite{whittle2010}.
 
-\section{Things to do}
+\subsection{\label{section 3.1} Effects of gravitational Instability}
+Gravitational instability is typically a seen in young protoplanetary disks which are massive and have large radii.  Once a disk is gravitationally unstable, numerical simulations have determined three possible outcomes of disk evolution.  It is possible for the disk to setting into a quasi-steady, "saturated" state in which there is a large amount of sel-gravitating turbulence and trailing spiral arms allow for outward motion of angular momentum.  A second possibility finds the disk exhibiting large accretion bursts.  A third, and more interesting possibility, shows the disk fragmenting into distinct bound objects, which can be crucial in planet formation or in the formation of large stellar objects \cite{armitage2011}.
 
-\begin{itemize}
-  \item Derive blackbody radiation temperature
-  \item Derive simple scaling relationship between $u$ and $\alpha$
-  \item Show that determining surface density profile allows us to recover $u$ for steady-state disks.
-  \item Talk about $\alpha$.  How it's never constant.  What it tells us.  Show how simple $\alpha$ models and gravitational instability/Toomre Q parameter are linked
-  \item What does this parameter mean.  What are the three solutions to the numerical simulations?
-  \item How can gravitational stability affect planetary formation?
-\end{itemize}
-
+\section{\label{section 4}Gravitational Fragmentation}
+\cite{whitworth2007}
 
 
 \bibliography{Bibliography}
