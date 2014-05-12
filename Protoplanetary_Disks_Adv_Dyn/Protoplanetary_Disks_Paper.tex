@@ -9,7 +9,7 @@
 \begin{document}
 
 
-\title{On the gravitational stability of rotating disks with respect to the formation of planets}
+\title{On the dynamics of gravitational stability in protoplanetary disks}
 
 \author{Evan Anders}
 \affiliation{Department of Physics, Whitworth University, 300 W. Hawthorne Rd., Spokane, WA 99251}
@@ -18,7 +18,7 @@
 \date{\today}
 
 \begin{abstract}
-A brief overview of the physics behind disks.
+Protoplanetary disks are astrophysical objects which surround young stars and are generally modeled as geometrically thin cylinders.  Here we examine the basic dynamics of such disks, including the effects of the gravitational and centripetal forces on the disks, as well as the effects of viscosity and random motions of particles.  We observe the effects of such parameters on disk stability, and briefly outline the regimes under which such instabilities can form distinct bound objects.
 \end{abstract}
 
 
@@ -35,6 +35,11 @@ A large body of the work that has been published on such protoplanetary disks pe
 
 
 \section{\label{section 2} A schema for the description of disk evolution}
+\begin{figure} [b!]
+	\includegraphics[width=3in]{angularMomentum.eps}
+	\caption{This plot shows a the trend that angular momentum follows in protoplanetary disks, as described in Eq. (\ref{angMomEq}).  This plot was created for nonspecific values of variables and constants, i.e. $m_p = G = M_* = 1$. \label{angMom}}
+\end{figure}
+
 
 Protoplanetary disks are modeled as thin cylinders in cylindrical polar coordinates $(r, \phi, h)$.  The thin nature of such disks provides for us the assumption that $h_{\text{max}} \ll r_{\text{max}}$.  The thinness of the disk, along with the fact that it is fluid in nature, being primary constituted out of gas and dust, allows us to assume that the mass of the disk is significantly lower than that of the star, or $M_{\text{disk}} \ll M_{*}$.  
 
@@ -48,9 +53,9 @@ Assuming that the disk is not collapsing in upon itself or rapidly expanding out
 \end{equation}
 As a result, the angular momenta of the disk particles can be expressed such that \cite{taylor2005},
 \begin{equation}
-\ell = \left| \vec{r} \times \vec{p} \right| = m_p r^2 \Omega_K = m_p \sqrt{G M_* r},
+\ell = \left| \vec{r} \times \vec{p} \right| = m_p r^2 \Omega_K = m_p \sqrt{G M_* r}, \label{angMomEq}
 \end{equation}
-which clearly increases as $\sqrt{r}$.  
+which clearly increases as $\sqrt{r}$, as shown in Fig. \ref{angMom}.  
 
 As we assumed that our disk is an accretion disk, we must account for angular momentum must be lost among the disk constituents.  There are two possible mechanisms for this loss of angular momentum: (i) the momentum is redistributed within the disk or (ii) the momentum is lost to an external sink \cite{armitage2011}.  This paper is primarily focused upon the former, with respect to how the gravity of the star and neighboring particles affect the motion of disk constituents.
 
@@ -142,6 +147,18 @@ for some constant $C$.  Plugging in the expression for torque found in Eq. (\ref
 
 
 \subsubsection{\label{section 2.2.1} Relating mass flow, viscosity, and mass density}
+\begin{figure} [b!]
+	\includegraphics[width=3in]{massFlow.eps}
+	\caption{This figure shows the shape of the relationship between mass flow rate and radius.  This plot was created using Eq. (\ref{massFlow}) with nonspecific values of other variables ($\nu = \mu = R_* = 1$).  Clearly, mass flow increases towards infinity as the star is approached, and at further radii it quickly drops off to a very low value. \label{massFlowFig}}
+\end{figure}
+\begin{figure} [t!]
+	\includegraphics[width=3in]{viscosity.eps}
+	\caption{This figure shows the shape of the relationship between viscosity and radius.  This plot was created using Eq. (\ref{massFlow}) with nonspecific values of other variables ($\dot{M} = \mu = R_* = 1$).  At radii near the star, the viscosity increases rapidly.  At further radii, it flattens out and approaches an asymptotic value. \label{viscosityFig}}
+\end{figure}
+\begin{figure} [b!]
+	\includegraphics[width=3in]{massDensity.eps}
+	\caption{This figure shows the shape of the relationship between mass density and radius.  This plot was created using Eq. (\ref{massFlow}) with nonspecific values of other variables ($\dot{M} = \nu = R_* = 1$).  Clearly, as evidenced by the parallelism of $\nu$ and $\mu$ in Eq. (\ref{massFlow}), this follows the same relationship described by Fig. \ref{viscosityFig}.  \label{massDensityFig}}
+\end{figure}
 Typical stars rotate less rapidly than the Keplerian velocity of the disk describes.  Thus,
 \begin{equation}
 \Omega_* < \Omega_K\bigg|_{R_*}
@@ -165,7 +182,7 @@ Using this boundary condition-dependent constant along with Eq. (\ref{modifiedAn
 \begin{equation}
 \nu \mu = \frac{\dot{M}}{3\pi}\left[ 1 - \sqrt{\frac{R_*}{r}} \right], \label{massFlow}
 \end{equation}
-providing for us a governing equation of how mass would flow with respect to viscosity and surface density in a steady state disk.
+providing for us a governing equation of how mass would flow with respect to viscosity and surface density in a steady state disk.  How these variables vary with respect to radius is shown in Figs. (\ref{massFlowFig}), (\ref{viscosityFig}), \& (\ref{massDensityFig}).
 
 \subsubsection{\label{section 2.2.2} Disk effective temperature}
 Returning momentarily to our arbitrary ring of thickness $dr$, we must acknowledge that there are competing torques on the inner and outer edge of the ring, taking the form
@@ -199,11 +216,16 @@ E_{\text{flux}} = \sigma T^4,
 \end{equation}
 where $\sigma$ is the Stefan-Boltzmann constant.  For our disk system, we know that $E_\text{flux} = D(r)$, and as such, the temperature of the disk can be expressed such that \cite{armitage2011, king2002}
 \begin{equation}
-T(r) = \left( \frac{3GM_*\dot{M}}{8\pi r^3 \sigma}\left[ 1 - \left( \frac{R_*}{r}\right)^{1/2}\right] \right)^{1/4}.
+T(r) = \left( \frac{3GM_*\dot{M}}{8\pi r^3 \sigma}\left[ 1 - \left( \frac{R_*}{r}\right)^{1/2}\right] \right)^{1/4}. \label{tempEq}
 \end{equation}
+The variance of temperature with respect to radius is shown in Fig. \ref{tempFig}.
 
 
 \subsection{\label{section2.3} Disk viscosity models}
+\begin{figure} [t!]
+	\includegraphics[width=3in]{temperature.eps}
+	\caption{This figure shows how temperature of the disk varies with respect to radius, as described by Eq. (\ref{tempEq}), using non-specific values of $M_* = \dot{M} = \sigma = R_* = 1$.  As would be expected, the temperature of the disk is high near to the star, and falls off rapidly to a low asymptotic value as the radius increases. \label{tempFig}}
+\end{figure}
 While our current assumptions, namely that disk turbulence is local and that there are no external torques acting on the disk, have proven useful in finding the temperature profile of the disk, in order to say anything further it will be necessary to specify the disk's viscosity, $\nu$.  The classical approach at such a point is to assume that
 \begin{equation}
 \nu = \alpha \frac{c_s^2}{\Omega_K} = \alpha c_s h , \label{nuRelation}
@@ -322,20 +344,29 @@ B = \Omega_\text{local} = \frac{\kappa}{\pi}
 \end{equation}
 Renaming our random motion $\langle u^2 \rangle ^{1/2}$ as the stellar velocity dispersion, $\sigma$, our equation becomes
 \begin{equation}
-Q = \frac{\sigma \kappa}{\pi G\mu_\text{disk}} > 1,
+Q = \frac{\sigma \kappa}{\pi G\mu_\text{disk}} > 1, \label{qParam}
 \end{equation}
-where $Q$ is called the ``Toomre Q parameter'' and specifies the necessary conditions for the gravitational stability of a disk.  From this parameter, it is clear to see that low velocity dispersion, low local rotation, low epicyclic frequencies and/or exceptionally high mass density favor gravitational instability \cite{whittle2010}.
+where $Q$ is called the Toomre $Q$ parameter and specifies the necessary conditions for the gravitational stability of a disk.  From this parameter, it is clear to see that low velocity dispersion, low local rotation, low epicyclic frequencies and/or exceptionally high mass density favor gravitational instability \cite{whittle2010}.  Relationship of this parameter with respect to $\sigma$, $\kappa$, and $\mu_\text{disk}$ is shown in Fig. \ref{qFig}.
 
-\subsection{\label{section 3.1} Effects of gravitational Instability}
+\begin{figure} [b!]
+	\includegraphics[width=3in]{qplot.eps}
+	\caption{This figure shows how the Toomre $Q$ parameter changes with respect to $\sigma, \kappa,$ or $\mu_\text{disk}$ when all other variables are held constant.  The blue line shows how the parameter changes with respect to $\sigma$ when $\kappa = \mu_\text{disk} = 1$, the red shows how the parameter changes with respect to $\kappa$ when $2\sigma = \mu_\text{disk} = 1$, and the black line shows how it changes with respect to $\mu_\text{disk}$ when $\sigma = \kappa = 1$.  Values of $Q > 1$ allow for gravitational stability, whereas values of $Q \lesssim 1$ show gravitational instability.  Clearly gravitational stability favors high values of $\kappa$ and $\sigma$ and low values of $\mu_\text{disk}$. \label{qFig}}
+\end{figure}
+
+
+
+\subsection{\label{section 3.2} Effects of gravitational Instability}
 Gravitational instability is typically a seen in young protoplanetary disks which are massive and have large radii.  Once a disk is gravitationally unstable, numerical simulations have determined three possible outcomes of disk evolution.  It is possible for the disk to setting into a quasi-steady, "saturated" state in which there is a large amount of sel-gravitating turbulence and trailing spiral arms allow for outward motion of angular momentum.  A second possibility finds the disk exhibiting large accretion bursts.  A third, and more interesting possibility, shows the disk fragmenting into distinct bound objects, which can be crucial in planet formation or in the formation of large stellar objects \cite{armitage2011}.
 
-\section{\label{section 4}Planet formation}
-
-\subsection{\label{section 4.1} Gravitational Instability}
+\subsection{\label{section 3.3} Gravitational Instability and planet formation}
 Theoretically, there are two conditions required for gravitational fragmentation to occur.  First, for the disk in which fragmentation occurs, we must find that $Q \lesssim 1$.  However, in addition to that, it is necessary for the proto-fragment to cool at a sufficiently rapid pace for energy delivered via compression to be radiated away.  Simulations have shown disks successfully achieving gravitational instability at around 30 AU when radiation from the central star is not accounted for.  Unfortunately, those simulations show strong spiral arms developing but no tendency to fragment gravitationally, as the disk is incapable of radiating energy at a rapid enough pace.  On the other hand, those simulations which have included the central star's radiation show a disk with the capability of radiating a sufficient quantity of energy, but such disks show no inclination of gravitational instability at small radii \cite{whitworth2007}.
 
-That being said, it has been shown that Sun-like stars occasionally form with massive, extended protoplanetary disks.  In such cases, brown dwarfs, planetary mass objects, or low-mass Hydrogen-burning stars are likely to form via gravitational instability at the far reaches of the disk.  When brown dwarfs do form from fragmentation, they are often liberated from the inner star's gravitational pull, often removing a significant portion of the accretion disk around the original star to form a stable accretion disk around the young, free brown dwarf.  In fact, a single protoplanetary disk of this sort is capable of creating a large number of brown dwarfs by itself.  these liberated stars will often eventually find a similarly liberated companion and form double brown dwarf binary systems with low mass ratios \cite{hubber 2007}.  
+That being said, it has been shown that Sun-like stars occasionally form with massive, extended protoplanetary disks.  In such cases, brown dwarfs, planetary mass objects, or low-mass Hydrogen-burning stars are likely to form via gravitational instability at the far reaches of the disk.  When brown dwarfs do form from fragmentation, they are often liberated from the inner star's gravitational pull, often removing a significant portion of the accretion disk around the original star to form a stable accretion disk around the young, free brown dwarf.  In fact, a single protoplanetary disk of this sort is capable of creating a large number of brown dwarfs by itself.  these liberated stars will often eventually find a similarly liberated companion and form double brown dwarf binary systems with low mass ratios \cite{hubber2007}.  
 
+
+
+\section{\label{section 4} Further Topics}
+While this paper has set up a framework for examining the dynamics and gravitational stability of protoplanetary disks, there are a number of significant topics in disk evolution which were outside of the scope of this summary.  For example, while simple $\alpha$ models of viscosity are useful, there is a large amount of literature on the derivation and effects of more complicated models of $\alpha$.  Additionally, although here we examined self-gravity and gravitational instability, it is clear that this is but one of many important topics involved in disk development and fragmentation.  Two particularly notable topics which were outside of the scope of this paper were disk radiation and magnetorotational instability.  For a brief overview of all relevant topics in disk evolution, I refer the reader to ``Dynamics of Protoplanetary Disks'' \cite{armitage2011}.
 
 \bibliography{Bibliography}
 
