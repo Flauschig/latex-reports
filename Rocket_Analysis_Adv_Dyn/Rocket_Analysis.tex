@@ -9,7 +9,7 @@
 \begin{document}
 
 
-\title{Determining the drag coefficient of the mirage rocket}
+\title{Determination of the drag coefficient of an ARO89019 mirage rocket}
 
 \author{Evan Anders}
 \author{Andrew French}
@@ -21,7 +21,7 @@
 \date{\today}
 
 \begin{abstract}
-Abstract goes here
+Here we derive equations of motion for the flight of a rocket which experiences a quadratic drag force.  Using these equations as a model, we utilize $\chi^2$ minimization techniques to determine the drag coefficient of a mirage ARO89019 rocket.  We find the drag coefficient of the rocket to be $\gamma = 1.21$ kg/m$^3$.
 \end{abstract}
 
 
@@ -30,7 +30,7 @@ Abstract goes here
 
 
 \section{\label{section1} Introduction}
-In introductory physics we learned to roughly model projectile motion using gravitational forces and initial velocities.  In advanced dynamics, we have improved upon that model by accounting for linear and quadratic drag forces.  It is our goal here to verify the correctness of drag forces by using real altitude data from a rocket launch; in verifying that this model is effective, we will determine the drag coefficient of the mirage rocket.  In section \ref{section 2}, we will examine the dynamics of a flying rocket including drag forces.  In section \ref{section 3}, we will discuss experimental setup and calibration.  In section \ref{section 4}, we will analyze the data and determine our drag coefficient.
+In introductory physics we learned to model projectile motion using initial velocities and gravitational acceleration.  In advanced dynamics, we have improved upon this model by accounting for linear and quadratic drag forces.  It is our goal to verify the correctness of these drag forces using real altitude data from the flight of a Mirage ARO89019 rocket propelled by an Aerotech g38 motor.  In verifying the efficacy of the drag model, we will determine the drag coefficient of the rocket.  In section \ref{section 2}, we will examine the equations of motion for a flying rocket.  In section \ref{section 3}, we will discuss motor calibration.  We discuss data analysis techniques and our best-fit value of the drag coefficient in section \ref{section 4}.  A discussion of sources of error occurs in section \ref{section 5}.
 
 
 
@@ -39,16 +39,17 @@ It is a good approximation to assume that drag forces act entirely in a directio
 \begin{equation}
 \vec{f}_\text{drag} = - f(v) \hat{v}.
 \end{equation}
-At speeds relative to our experiment, it is a good approximation to define
+At speeds relative to our experiment, we define
 \begin{equation}
 f(v) = f_\text{linear} + f_\text{quadratic} = b v + c v^2 ,
 \end{equation}
-where $f_\text{linear}$ will arise as a result of the viscous properties of air and $f_\text{quadratic}$ is caused by the projectile pushing air particles out of its path \cite{taylor2005}.  At high speeds, such as that of our rocket, the linear term becomes insignificant.  For a long, cylindrical object whose a velocity is aligned with the area vector of the top cylinder, the value of the quadratic drag coefficient becomes
+where $f_\text{linear}$ will arise as a result of the viscous properties of air and $f_\text{quadratic}$ is caused by the projectile pushing air particles out of its path \cite{taylor2005}.  At high speeds, such as those at which rockets travel during ascent, the linear term becomes insignificant.  For a long, cylindrical object whose velocity is aligned with the area vector of the top of the cylinder, the value of the quadratic drag coefficient becomes
 \begin{equation}
-c = \gamma A = \gamma \pi r^2.
+c = \gamma A = \gamma \pi r^2,
 \end{equation}
+where $r$ is the radius of the cylinder and $\gamma$ is a constant with units of mass/volume determined by the body in motion.
 
-The equations of motion for such a moving body subject to gravity and drag is \cite{taylor2005}
+The equation of motion for such a moving body subject to gravity and drag is \cite{taylor2005}
 \begin{equation}
 m \dot{\vec{v}} = m \vec{g} - c v \vec{v}, \label{dragC}
 \end{equation}
@@ -70,7 +71,7 @@ This system of equations is accurate for a rocket in motion \emph{after} its mot
 \begin{equation}
 \vec{f}_\text{burn} = f_\text{burn}(t) \hat{v}.
 \end{equation}
-During the burn, the mass of the rocket-motor system decreases.  We model mass as a function of time according to
+During the burn, the mass of the rocket-motor system decreases.  We model mass as a linearly decreasing function of time during the burn and constant after the burn, such that 
 \begin{equation}
 m(t) = 
 \begin{cases}
@@ -78,7 +79,7 @@ m_\text{rocket} + m_\text{fuel}\dfrac{(t_\text{burn} - t)}{t_\text{burn}}, & \te
 m_\text{rocket} & \text{if } t \geq t_\text{burn},
 \end{cases}
 \end{equation}
-where $m_\text{rocket}$ is the mass of the rocket plus the empty motor, $m_\text{fuel}$ is the full mass of the fuel in the motor, and $t_\text{burn}$ is the total time of the motor burn.
+where $m_\text{rocket}$ is the mass of the rocket plus the empty motor, $m_\text{fuel}$ is the mass of the fuel in the motor prior to launch, and $t_\text{burn}$ is the total time of the motor burn.
 
 Acknowledging our changing masses and forces, our equations of motion become
 \begin{equation}
@@ -98,48 +99,53 @@ m(t) \dot{v}_y =
 \label{ymotion}
 \end{cases}
 \end{equation}
-where $c$ is defined by Eq. (\ref{dragC}) and $v$ is defined by Eq. (\ref{vValue}).  Utilizing these equations, we are able to define 
-
+where $c$ is defined by Eq. (\ref{dragC}) and $v$ is defined by Eq. (\ref{vValue}). 
 
 \section{\label{section 3} Calibration}
 \begin{figure} [t!]
 	\includegraphics[width=3in]{calibration_Plot.eps}
-	\caption{We hung weights from our calibration apparatus in increments of 0.5 kg and measured the force reading of our force sensor.  We conclude that our best-fit line for measured force vs. applied force is $F_\text{measured} = 0.0316F_\text{applied} + 0.00794$ N.\label{calibrationPlot}}
+	\caption{We hung weights from a pulley-based calibration apparatus in increments of 0.5 kg and recorded the readings of the force sensor.  Our best-fit line relating measured force and applied force is $F_\text{measured} = 0.0316F_\text{applied} + 0.00794$ N.\label{calibrationPlot}}
 \end{figure}
 \begin{figure} [b!]
 	\includegraphics[width=3in]{G38-scaledTest.eps}
-	\caption{The force produced by a g38 rocket motor, as measured by our calibration device and scaled by a factor of $1/0.0316$, is shown here.\label{thrustPlot}}
+	\caption{The force produced by an Aerotech g38 rocket motor is shown.  Data was measured by our pulley-based calibration device and scaled by a factor of $1/0.0316$.\label{thrustPlot}}
 \end{figure}
 
-In order to calibrate the force output of our rocket motor, we crafted a pulley-based testing apparatus and attached to a Vernier Dual-Range Force Sensor.  Due to the fact that the wire used to connect our motor to the pulley system was metal and the fact that our pulleys were neither frictionless nor massless, we determined that it was necessary to experimentally calculate the scaling factor between force applied to our calibrator and force measured by it.  We attached a mass hanger to the motor casing which hung from the pulley system, and added weight in increments of 0.5 kg, as shown in Fig. \ref{calibrationPlot}.   
-
-We determined a relationship between measured force and applied force according to the addition of these weights, as shown by the best-fit line in Fig. \ref{calibrationPlot}.  This line follows the form
+In order to calibrate the force output of our rocket motor, we crafted a pulley-based testing apparatus attached to a Vernier Dual-Range Force Sensor.  In order to determine the scaling factor between force applied to our pulley system and force measured by the sensor, we added weight to our system in increments of 0.5 kg while recording the measured force.  Results of these calibrations are shown in Fig. \ref{calibrationPlot}.   Using this data, we determined a relationship between measured force and applied force, which follows the form
 \begin{equation}
-F_\text{measured} = \chi F_\text{applied} + \beta.
+F_\text{measured} = \chi F_\text{applied} + \beta,
 \end{equation}
-According to our data, our force scaling factor is $\chi = 0.0316$.  We also found a small offset, $\beta = 0.00794$ N, resulting from the internal inaccuracy of our force meter, despite being zeroed.
+where our apparatus' force scaling factor is $\chi = 0.0316$.  A small offset, $\beta = 0.00794$ N, appeared as a result of the internal inaccuracy of our force meter and from small oscillations within the pulley system.
 
-We used the same calibration apparatus to measure the force produced by a g38 motor.  Applying a scaling factor of $F_\text{applied} \approx F_\text{measured}/(0.0316)$, we determined that the force produced by our motor peaked around $55$ N, and lasted for approximately 2.16 seconds.  The force profile of a g38 motor is shown in Fig. \ref{thrustPlot}.
+We used the same calibration apparatus to measure the force produced by an Aerotech g38 motor.  Applying a scaling factor of $F_\text{applied} = F_\text{measured}/0.0316$, we determined that a g38 motor fires for a total of 2.16 seconds, delivering a peak force of roughly $55$ N.  The force profile of a g38 motor is shown in Fig. \ref{thrustPlot}.
 
 
 
 \section{\label{section 4} Experimental Data and Analysis}
-The mirage flew with an on-board altimeter which measured altitude as a function of pressure.  We used Wolfram Mathematica to interpolate both our flight data and our motor force data (shown in Fig. \ref{thrustPlot}).  Utilizing Eqs. (\ref{xmotion} \& \ref{ymotion}) to define the motion of our rocket, we used $\chi^2$ minimization techniques in order to determine the drag coefficient of our rocket.
+The mirage flew with an on-board altimeter which measured altitude as a function of pressure.  We used Wolfram Mathematica to interpolate rocket flight altitude data recorded by the altimeter as well as our calibrated motor force data.  Utilizing Eqs. (\ref{xmotion} \& \ref{ymotion}) to describe the motion of our rocket, we employed $\chi^2$ minimization techniques to determine the best value for the drag coefficient, $\gamma$, of the mirage.
 
-Acknowledging that our flight data showed significant noise within the first second after launch, we allowed our program to vary the value of initial velocity, $v_0$ between 0 m/s and 5 m/s.  Additionally, we varied the time-step, $\Delta t$ used between the evaluation of adjacent data points between 0.05 and 0.20 seconds.  Our best fit for the drag coefficient produced a value of $\gamma =  1.21$ in Eq. (\ref{dragC}).  This value accompanied a deviation of roughly 1.3 m per point of data, where $\Delta t = 0.05$ s and $v_0 = 5$ m/s.  A comparison of our theoretical model with these values to our experimental data is shown in Fig. \ref{experiment}.
+Acknowledging that our flight data showed significant noise within the first few data points after launch, we allowed our minimization routine to vary the value of initial velocity, $v_0$, between 0 m/s and 5 m/s.  Additionally, this routine varied the time-step used in gathering interpolated data, $\Delta t$, from 0.05 to 0.30 seconds.  
 
-\begin{figure} [b!]
-	\includegraphics[width=3in]{Mirage-G38-BestFit.eps}
-	\caption{Experimental data is compared to a model of rocket flight using Eqs. (\ref{xmotion} \& \ref{ymotion}), with $v_0 = 5$ m/s, $\Delta t = 0.05$ s, and $\gamma = 1.21$.  There is a mean difference of 1.3 m between experimental and theoretical data.  \label{experiment}}
+After setting up these parameters, we limited the data used in determining our drag coefficient to the first six seconds of data.  Although our rocket reached peak altitude shortly after seven seconds, our model fails in this regime for two reasons.  First, at peak altitude, the rocket is not traveling rapidly enough to justify ignoring the linear drag term.  Second, the rocket begins to tip; as it is no longer traveling in the direction of the nose cone, our model of $c$ in Eq. (\ref{dragC}) falls apart.
+
+Under these conditions, the best fit obtained for the mirage's drag coefficient value was $\gamma =  1.21$ kg/m$^3$.  This value accompanied a mean deviation between our model and flight data of roughly 1.33 m per data point, where data points were taken every 0.05 s.  A comparison of this best-fit theoretical model to experimental data is shown in Fig. \ref{experiment}.
+
+\begin{figure} [t!]
+	\includegraphics[width=3.5in]{Mirage-G38-BestFit.eps}
+	\caption{Here we compare experimental data for the flight of a mirage with a g38 motor to our model of Eqs. (\ref{xmotion} \& \ref{ymotion}) where $\gamma = 1.21$ kg/m$^3$.  There is a mean deviation of 1.33 m between experimental and theoretical data data points.  \label{experiment}}
 \end{figure}
 
 
 \section{\label{section 5} Discussion}
-We determined that the drag coefficient of our rocket was $\gamma = 1.21$.  However, this accompanied a model which allowed for an unsettling $5$ m/s of initial rocket velocity, while we know that our rocket fired from rest.  While a portion of this discrepancy may be due to the inaccuracy of the altimeter, we also failed to account for the oscillations introduced by our pulley system into our force readings.  As seen in Fig. \ref{thrustPlot}, the force delivered by the rocket is not a smooth line, but rather an oscillation of roughly 5-10 N peak-to-peak.
+We determined that the drag coefficient of our rocket was $\gamma = 1.21$ kg/m$^3$.  Unfortunately, this value was achieved for a model with $ v_ 0 = 5$ m/s.  While this allowance was made to account for noisy data, it is known that our rocket fired from rest. 
 
-Additionally, we failed to measure the launch angle of our rocket.  While we ran our $\chi^2$ calculations with an estimated launch angle of $1^\circ$, we are uncertain of the accuracy of this guess, and are therefore unable to understand the $\pm 2^\circ$ that this failure to estimate the launch angle introduced to our calculations.
+Once likely source of error arose from our failure to measure the launch angle of our rocket.  While our simulations ran under the assumption of a launch angle of $1^\circ$, it is probable that our launch angle was in the range of $1^\circ \pm 5^\circ$, which we did not account for in our simulations.
 
-Final, although our model is an improvement upon the description of particle trajectories from introductory physics, we failed to account for wind resistance and other small forces (such as the friction due to the launch rail), all of which would have somewhat affected our model.
+Additionally, while our model accounts for drag, it fails to account for wind and other small factors (such as the friction due to the launch rail).  On top of ignoring these forces, our model of the rocket as a perfect cylinder is slightly inaccurate due to the small cross-sectional area of the tail fins.
+
+A final source of error lies in the fact that we failed to account for the oscillations introduced to our pulley system when we calibrated the g38 motor.   As seen in Fig. \ref{thrustPlot}, the force delivered by the rocket is not a smooth line, but rather an oscillation of roughly 5-10 N peak-to-peak.  These fluctuations certainly affected the interpolated values of our motor thrust.
+
+Despite all of these error sources, our theoretical model fits the experimental data well.  A mean deviation of 1.33 m/point for a flight which peaks near 200 m is a mere 0.67\% error at maximum altitude, which is negligible.  This small error, as well as our value of $\gamma$, verify the correctness of our model of drag as a quadratic force during rocket ascent.
 
 \bibliography{Bibliography}
 
